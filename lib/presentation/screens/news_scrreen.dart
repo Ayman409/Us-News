@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:news_app/models/news_model.dart';
+import 'package:news_app/presentation/screens/detailes_screen.dart';
 import '../../controllers/news_controller.dart';
 
 class NewsScreen extends StatelessWidget {
@@ -21,57 +22,70 @@ class NewsScreen extends StatelessWidget {
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.all(12.0),
-                  child: Card(
-                    clipBehavior: Clip.antiAlias,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10),
+                  child: InkWell(
+                    onTap: () {
+                      Get.to(ArticlePage(articles: data.articles![index]));
+                    },
+                    child: Card(
+                      clipBehavior: Clip.antiAlias,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
                       ),
+                      elevation: 10,
+                      shadowColor: Colors.black,
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Image.network(
+                              data.articles![index].urlToImage.toString(),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                data.articles![index].title.toString(),
+                                textAlign: TextAlign.left,
+                                style: const TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                                maxLines: 3,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                data.articles![index].description.toString(),
+                                textAlign: TextAlign.left,
+                                maxLines: 2,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                data.articles![index].publishedAt.toString(),
+                                textAlign: TextAlign.left,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  IconButton(
+                                      onPressed: () {},
+                                      icon: const Icon(Icons.share_rounded)),
+                                  IconButton(
+                                      onPressed: () {},
+                                      icon: const Icon(Icons.note)),
+                                ],
+                              ),
+                            )
+                          ]),
                     ),
-                    elevation: 10,
-                    shadowColor: Colors.black,
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Image.network(
-                            data.articles![index].urlToImage.toString(),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              data.articles![index].title.toString(),
-                              textAlign: TextAlign.left,
-                              style: const TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
-                              maxLines: 3,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              data.articles![index].description.toString(),
-                              textAlign: TextAlign.left,
-                              maxLines: 2,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                IconButton(
-                                    onPressed: () {},
-                                    icon: const Icon(Icons.share_rounded)),
-                                IconButton(
-                                    onPressed: () {},
-                                    icon: const Icon(Icons.note)),
-                              ],
-                            ),
-                          )
-                        ]),
                   ),
                 );
               },
