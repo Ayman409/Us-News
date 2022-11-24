@@ -18,38 +18,39 @@ class ArticlePage extends StatelessWidget {
           // style: GoogleFonts.lobster(textStyle: const TextStyle(fontSize: 20)),
         ),
       ),
-      body: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Image.network(
-              articles.urlToImage.toString(),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                articles.title.toString(),
-                textAlign: TextAlign.left,
-                style:
-                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+      body: SingleChildScrollView(
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Image.network(
+                articles.urlToImage.toString(),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                articles.publishedAt.toString(),
-                textAlign: TextAlign.left,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  articles.title.toString(),
+                  textAlign: TextAlign.left,
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                articles.description.toString(),
-                textAlign: TextAlign.left,
-                style: TextStyle(fontSize: 20),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  articles.publishedAt.toString(),
+                  textAlign: TextAlign.left,
+                ),
               ),
-            ),
-          ]),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  articles.description.toString(),
+                  textAlign: TextAlign.left,
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.w400),
+                ),
+              ),
+            ]),
+      ),
     );
   }
 }

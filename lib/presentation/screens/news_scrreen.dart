@@ -24,7 +24,8 @@ class NewsScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(12.0),
                   child: InkWell(
                     onTap: () {
-                      Get.to(ArticlePage(articles: data.articles![index]));
+                      Get.to(
+                          () => ArticlePage(articles: data.articles![index]));
                     },
                     child: Card(
                       clipBehavior: Clip.antiAlias,
@@ -37,6 +38,7 @@ class NewsScreen extends StatelessWidget {
                       shadowColor: Colors.black,
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Image.network(
                               data.articles![index].urlToImage.toString(),
@@ -47,7 +49,7 @@ class NewsScreen extends StatelessWidget {
                                 data.articles![index].title.toString(),
                                 textAlign: TextAlign.left,
                                 style: const TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
+                                    fontSize: 20, fontWeight: FontWeight.w600),
                                 maxLines: 3,
                               ),
                             ),
@@ -56,6 +58,8 @@ class NewsScreen extends StatelessWidget {
                               child: Text(
                                 data.articles![index].description.toString(),
                                 textAlign: TextAlign.left,
+                                style: const TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.w300),
                                 maxLines: 2,
                               ),
                             ),
@@ -66,21 +70,23 @@ class NewsScreen extends StatelessWidget {
                                 textAlign: TextAlign.left,
                               ),
                             ),
-                            const SizedBox(
-                              height: 10,
-                            ),
+                            // const SizedBox(
+                            //   height: 10,
+                            // ),
                             Padding(
-                              padding: const EdgeInsets.all(20.0),
+                              padding: const EdgeInsets.only(
+                                  left: 10, right: 10, bottom: 10),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   IconButton(
                                       onPressed: () {},
-                                      icon: const Icon(Icons.share_rounded)),
+                                      icon: const Icon(
+                                          Icons.favorite_outline_outlined)),
                                   IconButton(
                                       onPressed: () {},
-                                      icon: const Icon(Icons.note)),
+                                      icon: const Icon(Icons.share_rounded)),
                                 ],
                               ),
                             )
